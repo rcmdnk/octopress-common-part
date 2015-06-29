@@ -2,7 +2,7 @@
 
 Make Octopress faster by pre-rendering common parts and inserting.
 
-# How it works
+## How it works
 
 In your Octopress site,
 there may be a lot of common parts in each page or post,
@@ -16,7 +16,7 @@ renders before rendering pages and posts,
 then inserts these common parts to pages and posts by the tag
 when they are rendered.
 
-# Requirement
+## Requirement
 
 If you are using Octopress, or Jekyll version >= 3.0, nothing is needed.
 
@@ -25,7 +25,7 @@ need gem:
 
     $ gem install octopress-hooks
 
-# Installation
+## Installation
 
 * Copy **plugins/_common_parts.rb** to **plugins/**.
 
@@ -56,7 +56,7 @@ from **plugins/category_generator.rb***.
 They are unnecessary in any case, because
 they are rendered and written when normal pages are rendered and written, too.
 
-# Usage
+## Usage
 
 Make a directory **source/_common_parts**.
 

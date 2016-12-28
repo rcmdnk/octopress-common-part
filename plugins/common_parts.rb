@@ -33,7 +33,7 @@ module Jekyll
           "site"   => Utils.deep_merge_hashes(site.config,
             Utils.deep_merge_hashes(Hash[site.collections.map{|label, coll| [label, coll.docs]}], {
               "time"         => site.time,
-              "posts"        => site.posts.sort { |a, b| b <=> a },
+              "posts"        => site.posts.docs.sort { |a, b| b <=> a },
               "pages"        => site.pages,
               "static_files" => site.static_files.sort { |a, b| a.relative_path <=> b.relative_path },
               "html_pages"   => site.pages.select { |page| page.html? || page.url.end_with?("/") },

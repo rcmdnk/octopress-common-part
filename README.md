@@ -32,7 +32,7 @@ need gem:
 In addition, remove `render` and `write` methods
 from **plugins/category_generator.rb***.
 
-{% codeblock category_generator.rb lang:diff %}
+```diff
 --- a/plugins/category_generator.rb
 +++ b/plugins/category_generator.rb
 @@ -90,15 +90,11 @@ module Jekyll
@@ -51,7 +51,7 @@ from **plugins/category_generator.rb***.
        # Record the fact that this page has been added, otherwise Site::cleanup will remove it.
        self.pages << feed
      end
-{% endcodeblock %}
+```
 
 They are unnecessary in any case, because
 they are rendered and written when normal pages are rendered and written, too.
@@ -65,20 +65,20 @@ You can see examples in **octopress-common-parts/source/_common_parts/**.
 
 Such common_header.html is like:
 
-{% codeblock common_header.html lang:html %}
+```html
 ---
 layout: null
 ---
 {% capture root_url %}{{ site.root | strip_slash }}{% endcapture %}
 <header role="banner">{% include header.html %}</header>
 <nav role="navigation">{% include navigation.html %}</nav>
-{% endcodeblock %}
+```
 
 It is a part of **source/_layouts/default.html**.
 
 Then, replace the part in such **default.html** by common_part tag:
 
-{% codeblock default.html lang:diff %}
+```diff
 --- a/source/_layouts/default.html
 +++ b/source/_layouts/default.html
 @@ -1,8 +1,7 @@
@@ -91,4 +91,4 @@ Then, replace the part in such **default.html** by common_part tag:
    <div id="main">
      <div id="content">
        {{ content | expand_urls: root_url }}
-{% endcodeblock %}
+```

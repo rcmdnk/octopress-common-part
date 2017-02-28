@@ -9,7 +9,7 @@ there may be a lot of common parts in each page or post,
 such a header or sidebar, in which no page or post values are used.
 
 Normally, jekyll renders these common parts for each page or post,
-but the results are exactly same, extremely wasteful.
+but the results are exactly same. It is extremely wasteful.
 
 octopress-common-part separates these common parts,
 renders before rendering pages and posts,
@@ -32,33 +32,16 @@ need gem:
 In addition, remove `render` and `write` methods
 from **plugins/category_generator.rb***.
 
-```diff
---- a/plugins/category_generator.rb
-+++ b/plugins/category_generator.rb
-@@ -90,15 +90,11 @@ module Jekyll
-     #  +category+     is the category currently being processed.
-     def write_category_index(category_dir, category)
-       index = CategoryIndex.new(self, self.source, category_dir, category)
--      index.render(self.layouts, site_payload)
--      index.write(self.dest)
-       # Record the fact that this page has been added, otherwise Site::cleanup will remove it.
-       self.pages << index
-
-       # Create an Atom-feed for each index.
-       feed = CategoryFeed.new(self, self.source, category_dir, category)
--      feed.render(self.layouts, site_payload)
--      feed.write(self.dest)
-       # Record the fact that this page has been added, otherwise Site::cleanup will remove it.
-       self.pages << feed
-     end
-```
-
-They are unnecessary in any case, because
-they are rendered and written when normal pages are rendered and written, too.
-
 ## Usage
 
 Make a directory **source/_common_parts**.
+
+Or set your own common directory in **_config.yml**:
+
+    # common parts
+    common_parts_dir: _my_common_parts
+
+and make **source/my ommon parts dirctory>**. It must starts with `_`.
 
 Put your common parts in there.
 You can see examples in **octopress-common-parts/source/_common_parts/**.

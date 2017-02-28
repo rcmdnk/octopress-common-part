@@ -10,7 +10,8 @@ module Jekyll
       end
 
       def post_read(site)
-        base = Jekyll.sanitized_path(site.source, "_common_parts")
+        dir = site.config["common_parts_dir"] || "_common_parts"
+        base = Jekyll.sanitized_path(site.source, dir)
         return unless File.exist?(base)
         entries = Dir.chdir(base) do
           EntryFilter.new(site, base).filter(Dir['**/*'])
@@ -18,7 +19,7 @@ module Jekyll
         entries.delete_if { |e| File.directory?(Jekyll.sanitized_path(base, e)) }
 
         site.common_parts = entries.map do |entry|
-          Page.new(site, site.source, '_common_parts', entry)
+          Page.new(site, site.source, dir, entry)
         end.reject do |entry|
           entry.nil?
         end
